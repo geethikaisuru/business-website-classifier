@@ -39,10 +39,24 @@ class BusinessCheckerGUI:
         max_entry = ttk.Entry(frm, textvariable=self.max_results_var, width=12)
         max_entry.grid(row=1, column=1, sticky=tk.W, padx=8, pady=6)
 
+        # Gemini API Key status log
+        gemini_key = os.environ.get("GEMINI_API_KEY")
+        gemini_status = "Found" if gemini_key else "Not Found"
+        gemini_color = "#228B22" if gemini_key else "#B22222"
+        self.gemini_status_label = tk.Label(frm, text=f"Gemini API Key: {gemini_status}", fg=gemini_color, bg="#f4f6fb", font=('Segoe UI', 9, 'bold'))
+        self.gemini_status_label.grid(row=1, column=2, padx=(16, 0), sticky=tk.W)
+
         ttk.Label(frm, text="Batch Size:").grid(row=2, column=0, sticky=tk.W, pady=6)
         self.batch_size_var = tk.StringVar(value="10")
         batch_entry = ttk.Entry(frm, textvariable=self.batch_size_var, width=12)
         batch_entry.grid(row=2, column=1, sticky=tk.W, padx=8, pady=6)
+
+        # Places API Key status log
+        places_key = os.environ.get("GOOGLE_PLACES_API_KEY")
+        places_status = "Found" if places_key else "Not Found"
+        places_color = "#228B22" if places_key else "#B22222"
+        self.places_status_label = tk.Label(frm, text=f"Places API Key: {places_status}", fg=places_color, bg="#f4f6fb", font=('Segoe UI', 9, 'bold'))
+        self.places_status_label.grid(row=2, column=2, padx=(16, 0), sticky=tk.W)
 
         # Add Places API button
         self.places_btn = ttk.Button(frm, text="Analyse with Places API", command=self.start_places_analysis, style='TButton')

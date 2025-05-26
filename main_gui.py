@@ -9,7 +9,7 @@ class BusinessCheckerGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("Business Website Checker (AI)")
-        self.root.geometry("650x550")
+        self.root.geometry("650x700")
         self.root.configure(bg="#f4f6fb")
         style = ttk.Style()
         try:
@@ -44,9 +44,6 @@ class BusinessCheckerGUI:
         batch_entry = ttk.Entry(frm, textvariable=self.batch_size_var, width=12)
         batch_entry.grid(row=2, column=1, sticky=tk.W, padx=8, pady=6)
 
-        self.start_btn = ttk.Button(frm, text="🚀 Start Analysis", command=self.start_analysis, style='TButton')
-        self.start_btn.grid(row=3, column=0, columnspan=2, pady=(16, 0), sticky=tk.EW)
-
         # Add Places API button
         self.places_btn = ttk.Button(frm, text="Analyse with Places API", command=self.start_places_analysis, style='TButton')
         self.places_btn.grid(row=4, column=0, columnspan=2, pady=(8, 0), sticky=tk.EW)
@@ -61,46 +58,20 @@ class BusinessCheckerGUI:
         )
         self.output.pack(fill=tk.BOTH, expand=True)
 
-    def start_analysis(self):
-        self.start_btn.config(state=tk.DISABLED)
-        self.output.config(state='normal')
-        self.output.delete(1.0, tk.END)
-        self.output.insert(tk.END, "Starting analysis...\n")
-        self.output.config(state='disabled')
-        threading.Thread(target=self.run_checker, daemon=True).start()
-
-    def run_checker(self):
-        load_dotenv()
-        if not os.environ.get("GEMINI_API_KEY"):
-            self.append_output("ERROR: GEMINI_API_KEY is not set in environment or .env file.\n")
-            self.start_btn.config(state=tk.NORMAL)
-            return
-        location = self.location_var.get().strip() or "Nugegoda, Sri Lanka"
-        try:
-            max_results = int(self.max_results_var.get())
-        except ValueError:
-            max_results = 50
-        try:
-            batch_size = int(self.batch_size_var.get())
-        except ValueError:
-            batch_size = 10
-        checker = GooglePlacesBusinessChecker()
-        import builtins
-        orig_print = print
-        def print_to_output(*args, **kwargs):
-            msg = ' '.join(str(a) for a in args)
-            self.append_output(msg + '\n')
-            orig_print(*args, **kwargs)
-        builtins.print = print_to_output
-        try:
-            checker.run_search(location, max_results=max_results, batch_size=batch_size)
-            self.append_output("\nAnalysis complete!\n")
-            self.append_output(f"Results saved to businesses_without_websites.txt and .csv\n")
-        except Exception as e:
-            self.append_output(f"Error: {e}\n")
-        finally:
-            builtins.print = orig_print
-            self.start_btn.config(state=tk.NORMAL)
+        # Place footer directly below output area, always visible
+        footer = tk.Label(
+            output_frame,
+            text="Made with ❤️ by Geethika",
+            fg="#2d5be3",
+            bg="#eaf0fa",
+            font=('Segoe UI', 10, 'italic', 'underline'),
+            cursor="hand2"
+        )
+        footer.pack(side=tk.BOTTOM, pady=(4, 2))
+        def open_author_link(event):
+            import webbrowser
+            webbrowser.open_new("https://geethikaisuru.com")
+        footer.bind("<Button-1>", open_author_link)
 
     def start_places_analysis(self):
         self.places_btn.config(state=tk.DISABLED)

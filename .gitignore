@@ -3,3 +3,6 @@ venv/
 _pycache_/
 __pycache__/main.cpython-312.pyc
 __pycache__/main.cpython-312.pyc
+places_businesses_without_websites.csv
+places_businesses_without_websites.txt
+__pycache__/main_places_api.cpython-312.pyc

@@ -9,6 +9,12 @@ import os
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
 
 class GoogleMapsBusinessChecker:
     def __init__(self):
@@ -27,45 +33,51 @@ class GoogleMapsBusinessChecker:
     
     def search_businesses_in_area(self, location, business_type=""):
         """
-        Search for businesses in a specific area
-        location: e.g., "New York, NY" or "Downtown Los Angeles"
-        business_type: e.g., "restaurants", "shops", "services" (optional)
+        Search for businesses in a specific area using Selenium and Chrome
         """
         query = f"{business_type} in {location}" if business_type else location
-        
-        # Google Maps search URL
-        base_url = "https://www.google.com/maps/search/"
-        search_url = base_url + query.replace(" ", "+")
-        
-        print(f"Searching for businesses in: {location}")
-        print(f"Search URL: {search_url}")
-        
+        print(f"[SELENIUM] Searching for: {query}")
+        options = Options()
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--window-size=1920,1080')
+        options.add_argument('--disable-blink-features=AutomationControlled')
+        driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
         try:
-            response = self.session.get(search_url)
-            response.raise_for_status()
-            
-            # Parse the HTML response
-            soup = BeautifulSoup(response.content, 'html.parser')
-            
-            # Find business listings (this is a simplified approach)
-            business_links = soup.find_all('a', {'data-value': True})
-            
+            search_url = f"https://www.google.com/maps/search/{query.replace(' ', '+')}"
+            print(f"[SELENIUM] Navigating to: {search_url}")
+            driver.get(search_url)
+            # Wait for results to load
+            WebDriverWait(driver, 15).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, 'div[role="article"]'))
+            )
+            print("[SELENIUM] Results loaded. Extracting businesses...")
+            business_cards = driver.find_elements(By.CSS_SELECTOR, 'div[role="article"]')
+            print(f"[SELENIUM] Found {len(business_cards)} business cards.")
             businesses_found = []
-            for link in business_links[:50]:  # Get more results for batch processing
-                business_name = link.get_text(strip=True)
-                business_url = "https://www.google.com" + link.get('href', '')
-                
+            for card in business_cards[:50]:
+                try:
+                    name_elem = card.find_element(By.CSS_SELECTOR, 'div[aria-label]')
+                    business_name = name_elem.get_attribute('aria-label')
+                except Exception:
+                    business_name = card.text.split('\n')[0]
+                try:
+                    maps_url = card.find_element(By.CSS_SELECTOR, 'a').get_attribute('href')
+                except Exception:
+                    maps_url = ''
                 if business_name and len(business_name) > 2:
                     businesses_found.append({
                         'name': business_name,
-                        'maps_url': business_url
+                        'maps_url': maps_url
                     })
-            
+            print(f"[SELENIUM] Extracted {len(businesses_found)} businesses.")
             return businesses_found
-            
-        except requests.RequestException as e:
-            print(f"Error searching for businesses: {e}")
+        except Exception as e:
+            print(f"[SELENIUM][ERROR] {e}")
             return []
+        finally:
+            driver.quit()
     
     def get_business_detailed_info(self, business_name, maps_url):
         """

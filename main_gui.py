@@ -3,7 +3,7 @@ from tkinter import ttk, scrolledtext
 import threading
 import os
 from dotenv import load_dotenv
-from main import GoogleMapsBusinessChecker
+from main_places_api import GooglePlacesBusinessChecker
 
 class BusinessCheckerGUI:
     def __init__(self, root):
@@ -47,6 +47,10 @@ class BusinessCheckerGUI:
         self.start_btn = ttk.Button(frm, text="🚀 Start Analysis", command=self.start_analysis, style='TButton')
         self.start_btn.grid(row=3, column=0, columnspan=2, pady=(16, 0), sticky=tk.EW)
 
+        # Add Places API button
+        self.places_btn = ttk.Button(frm, text="Analyse with Places API", command=self.start_places_analysis, style='TButton')
+        self.places_btn.grid(row=4, column=0, columnspan=2, pady=(8, 0), sticky=tk.EW)
+
         # Output area frame
         output_frame = ttk.Frame(root, padding=(10, 8, 10, 10), style='TFrame')
         output_frame.pack(fill=tk.BOTH, expand=True, padx=18, pady=(0, 18))
@@ -80,7 +84,7 @@ class BusinessCheckerGUI:
             batch_size = int(self.batch_size_var.get())
         except ValueError:
             batch_size = 10
-        checker = GoogleMapsBusinessChecker()
+        checker = GooglePlacesBusinessChecker()
         import builtins
         orig_print = print
         def print_to_output(*args, **kwargs):
@@ -97,6 +101,53 @@ class BusinessCheckerGUI:
         finally:
             builtins.print = orig_print
             self.start_btn.config(state=tk.NORMAL)
+
+    def start_places_analysis(self):
+        self.places_btn.config(state=tk.DISABLED)
+        self.output.config(state='normal')
+        self.output.delete(1.0, tk.END)
+        self.output.insert(tk.END, "Starting analysis with Google Places API...\n")
+        self.output.config(state='disabled')
+        threading.Thread(target=self.run_places_checker, daemon=True).start()
+
+    def run_places_checker(self):
+        from dotenv import load_dotenv
+        load_dotenv()
+        import os
+        if not os.environ.get("GEMINI_API_KEY"):
+            self.append_output("ERROR: GEMINI_API_KEY is not set in environment or .env file.\n")
+            self.places_btn.config(state=tk.NORMAL)
+            return
+        if not os.environ.get("GOOGLE_PLACES_API_KEY"):
+            self.append_output("ERROR: GOOGLE_PLACES_API_KEY is not set in environment or .env file.\n")
+            self.places_btn.config(state=tk.NORMAL)
+            return
+        location = self.location_var.get().strip() or "Nugegoda, Sri Lanka"
+        try:
+            max_results = int(self.max_results_var.get())
+        except ValueError:
+            max_results = 50
+        try:
+            batch_size = int(self.batch_size_var.get())
+        except ValueError:
+            batch_size = 10
+        checker = GooglePlacesBusinessChecker()
+        import builtins
+        orig_print = print
+        def print_to_output(*args, **kwargs):
+            msg = ' '.join(str(a) for a in args)
+            self.append_output(msg + '\n')
+            orig_print(*args, **kwargs)
+        builtins.print = print_to_output
+        try:
+            checker.run_search(location, max_results=max_results, batch_size=batch_size)
+            self.append_output("\nAnalysis complete!\n")
+            self.append_output(f"Results saved to places_businesses_without_websites.txt and .csv\n")
+        except Exception as e:
+            self.append_output(f"Error: {e}\n")
+        finally:
+            builtins.print = orig_print
+            self.places_btn.config(state=tk.NORMAL)
 
     def append_output(self, text):
         self.output.config(state='normal')

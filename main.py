@@ -8,6 +8,7 @@ import json
 import os
 from google import genai
 from google.genai import types
+from dotenv import load_dotenv
 
 class GoogleMapsBusinessChecker:
     def __init__(self):
@@ -323,21 +324,34 @@ Only include the JSON response, no other text."""
 
 # Example usage
 if __name__ == "__main__":
-    # Create checker instance
+    from dotenv import load_dotenv
+    load_dotenv()
+    
+    # Check if GEMINI_API_KEY is set
+    if not os.environ.get("GEMINI_API_KEY"):
+        print("ERROR: GEMINI_API_KEY is not set in environment or .env file.")
+        exit(1)
+
+    print("\n==== Google Maps Business Website Checker ====")
+    location = input("Enter location (default: Nugegoda, Sri Lanka): ").strip() or "Nugegoda, Sri Lanka"
+    max_results = input("How many businesses to analyze? (default: 50): ").strip()
+    batch_size = input("Batch size per AI call? (default: 10): ").strip()
+    
+    try:
+        max_results = int(max_results) if max_results else 50
+    except ValueError:
+        max_results = 50
+    try:
+        batch_size = int(batch_size) if batch_size else 10
+    except ValueError:
+        batch_size = 10
+
     checker = GoogleMapsBusinessChecker()
+    checker.run_search(location, max_results=max_results, batch_size=batch_size)
     
-    # Example searches - modify these for your needs
-    
-    # Search for all businesses in a specific area
-    # Process 10 businesses per API call for efficiency
-    checker.run_search("Downtown Seattle, WA", max_results=50, batch_size=10)
-    
-    # Search for specific types of businesses
-    # checker.run_search("Los Angeles, CA", "restaurants", max_results=30, batch_size=10)
-    # checker.run_search("Chicago, IL", "retail stores", max_results=40, batch_size=15)
-    
+    print("\nSummary:")
+    print(f"Location: {location}")
+    print(f"Total businesses analyzed: {max_results}")
+    print(f"Batch size: {batch_size}")
+    print(f"Results saved to businesses_without_websites.txt and businesses_without_websites.csv")
     print("\nProgram finished!")
-    print("Check the generated files:")
-    print("- businesses_without_websites.txt")
-    print("- businesses_without_websites.csv")
-    print("\nNote: Make sure to set your GEMINI_API_KEY environment variable before running!")

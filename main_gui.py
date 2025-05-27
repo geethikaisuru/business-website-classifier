@@ -8,7 +8,7 @@ from main_places_api import GooglePlacesBusinessChecker
 class BusinessCheckerGUI:
     def __init__(self, root):
         self.root = root
-        self.root.title("Business Website Checker (AI)")
+        self.root.title("No Site Business Finder - NSBF 🕵️‍♂️")
         self.root.geometry("650x700")
         self.root.configure(bg="#f4f6fb")
         style = ttk.Style()
@@ -22,7 +22,7 @@ class BusinessCheckerGUI:
         style.configure('Header.TLabel', font=('Segoe UI', 16, 'bold'), foreground='#2d5be3', background="#f4f6fb")
 
         # Header
-        header = ttk.Label(root, text="Business Website Checker (AI)", style='Header.TLabel', anchor='center')
+        header = ttk.Label(root, text="No Site Business Finder - NSBF", style='Header.TLabel', anchor='center')
         header.pack(pady=(18, 8))
 
         # Input fields frame

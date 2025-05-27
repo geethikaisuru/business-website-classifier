@@ -53,7 +53,7 @@ with st.container():
         col1, col2 = st.columns([1, 1])
         with col1:
             location = st.text_input("📍 Location", value="Nugegoda, Sri Lanka")
-                # Collapsible tutorial
+            
 
         with col2:
             max_results = st.number_input("🔢 Number of Businesses to Analyse", min_value=1, max_value=100, value=50)

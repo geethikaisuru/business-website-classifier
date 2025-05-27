@@ -15,7 +15,7 @@ Businesses Without Websites (Classified by AI, Places API)
 
 4. Leisure Villa
    Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJY_o0pvRa4joRfyagHsxwl-g
-   AI Analysis: Website link is to Booking.com.
+   AI Analysis: Link to booking.com, not official website.
 
 5. Colombo Homesay
    Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJ0T95UUFa4joRFeVVTLVGqZI
@@ -36,88 +36,4 @@ Businesses Without Websites (Classified by AI, Places API)
 9. U Residence
    Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJHR99IkZa4joRAblEYDWoPME
    AI Analysis: No links found.
-
-10. Fully Furnished
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJE1vC2vla4joRqG1latHBQVE
-   AI Analysis: No website link provided.
-
-11. Villa iVy crest
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJe4fgs_dZ4joRNITfIttp9tI
-   AI Analysis: No website link provided.
-
-12. Eco Friendly Beautiful Suite
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJ08-nI2da4joRbAOL6-lE5qQ
-   AI Analysis: No website link provided.
-
-13. Wishing Well Apartment
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJjX-hQ5Fa4joR1gQ7Avc8XSw
-   AI Analysis: Third-party booking site.
-
-14. The Loft Colombo
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJW3skRjda4joRvrAUGiGIGrQ
-   AI Analysis: No website link provided.
-
-15. Sri Jayawardenepura Kotte
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJT4qaN5BZ4joRSQtBZlJ6iEs
-   AI Analysis: No website link provided.
-
-16. Colombo - EI Team Guest House
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJQxaSB5Ra4joRdWjnpE2vGhE
-   AI Analysis: No website links were found.
-
-17. Silvikris Villa
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJtVHTME9a4joReArzD7XmZE0
-   AI Analysis: The website link is to Booking.com, a third-party platform.
-
-18. Mr.Chinthaka Kohomban
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJw23OQGZa4joRoF9lG7jQKLI
-   AI Analysis: No website links were found.
-
-19. Miyako Tiles
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJe33eREda4joRyXlUEbYHrac
-   AI Analysis: No website links were found.
-
-20. Serene
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJ1b8piEJa4joRCKQNjx8wDrk
-   AI Analysis: No website links were found.
-
-21. Primeg
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJYYAcYWta4joRDPMBWf9TlSs
-   AI Analysis: No website links were found.
-
-22. Lalix Hotel Colombo
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJ4Zy4nvJa4joRus8-BHWzReU
-   AI Analysis: No website link found.
-
-23. Colombo Hub
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJ22ehYE9a4joRvuWH4W6nAjs
-   AI Analysis: No website link found.
-
-24. Cultaral House Homestay
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJzyE9NT5a4joR5C_7L98_xPw
-   AI Analysis: No website link found.
-
-25. Highlevel Plaza
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJOaKFyWZa4joRZwolPUFHPZM
-   AI Analysis: No website link found.
-
-26. Euroceylon Software (Pvt) Ltd
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJ7RqlsEZa4joRPajaxWLj6RM
-   AI Analysis: No website link found.
-
-27. Digi Media Production (pvt) Ltd
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJ61S43kFa4joRGKOpuIrNyzc
-   AI Analysis: No website link found.
-
-28. International Academy of Beauticians (Pvt) Ltd.
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJI6v_EGda4joRYwHKBcbGKbc
-   AI Analysis: No website link found.
-
-29. Pet Shine Animal Clinic
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJE0VyG3xa4joRwO44bylHt3Y
-   AI Analysis: The website is a blogspot domain, which is not considered an official website.
-
-30. LIB Photo Enterprise
-   Google Maps: https://www.google.com/maps/place/?q=place_id:ChIJAUEwVUFa4joRq4O0bmZuTe0
-   AI Analysis: The provided link is to a Facebook page, not a website.
 

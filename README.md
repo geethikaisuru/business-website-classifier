@@ -17,46 +17,75 @@ No Site Business Finder (NSBF) is an open-source tool that helps you discover bu
 - 📋 Download results as TXT or CSV
 - 🔑 API key status indicators
 - 📊 Real-time logs and progress bar
-- 🎨 Beautiful UI (Tkinter GUI and Streamlit Web App)
+- 🎨 Beautiful UI (Streamlit Web App and Tkinter GUI)
 - ❤️ MIT Open Source
 
 ---
 
-## 🖥️ Installation & Usage
+## 🖥️ Installation
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/yourusername/no-site-business-finder.git
-cd no-site-business-finder
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/no-site-business-finder.git
+   cd no-site-business-finder
+   ```
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Set up your API keys**
+   Create a `.env` file in the project root with:
+   ```
+   GEMINI_API_KEY=your_gemini_api_key
+   GOOGLE_PLACES_API_KEY=your_google_places_api_key
+   ```
 
-### 2. Install dependencies
-```bash
-pip install -r requirements.txt
-```
+---
 
-### 3. Set up your API keys
-Create a `.env` file in the project root with:
-```
-GEMINI_API_KEY=your_gemini_api_key
-GOOGLE_PLACES_API_KEY=your_google_places_api_key
-```
+## 🌐 Streamlit Web App (Recommended)
 
-### 4. Run the Streamlit Web App
+### LIVE URL
+https://nositebusinessfinder.streamlit.app/
+
+### How to Run
 ```bash
 streamlit run app.py
 ```
 
-### 5. (Optional) Run the Tkinter GUI
+### How to Use
+1. **Set your API keys** in the sidebar if not already set (session only or via .env).
+2. **Enter a location** (e.g., city, region, or address).
+3. **Choose the number of businesses** to analyse and the AI batch size.
+4. Click **"Analyse with Places API"** 🚀
+5. Watch the log for progress and download your results when done!
+6. Expand the **"How to use this app / How it works"** section for a quick tutorial.
+
+#### Screenshot
+![Streamlit App Screenshot](img/NSBF-streamlit.jpg)
+
+---
+
+## 🖥️ Classic GUI App (Tkinter)
+
+### How to Run
 ```bash
 python main_gui.py
 ```
 
+### How to Use
+1. **Set your API keys** in the `.env` file before launching.
+2. **Enter the location, max results, and batch size** in the input fields.
+3. Click **"Analyse with Places API"**.
+4. Watch the log area for progress and results.
+5. Downloaded results will be saved as TXT and CSV in the project folder.
+
+#### Screenshot
+![GUI App Screenshot](img/NSBF-gui.jpg)
+
 ---
 
-## 🖼️ Screenshots
-
-> _Add screenshots of the Streamlit and Tkinter apps here!_
+## 📦 Requirements
+All dependencies for both versions are listed in `requirements.txt`.
 
 ---
 

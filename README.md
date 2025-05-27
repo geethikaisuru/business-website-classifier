@@ -10,6 +10,8 @@ No Site Business Finder (NSBF) is an open-source tool that helps you discover bu
 
 ### LIVE URL
 https://nositebusinessfinder.streamlit.app/
+
+![App Banner](img/nsbf-banner.png)
 ---
 
 ## ✨ Features

@@ -1,2 +1,5 @@
-selenium
-webdriver-manager 
+streamlit
+python-dotenv
+requests
+google-genai
+tk 

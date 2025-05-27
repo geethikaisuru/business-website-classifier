@@ -8,6 +8,8 @@
 
 No Site Business Finder (NSBF) is an open-source tool that helps you discover businesses in any region that do **not** have a website, using the Google Places API and Gemini AI for robust detection. It's perfect for marketers, agencies, and entrepreneurs looking for digitalization opportunities.
 
+### LIVE URL
+https://nositebusinessfinder.streamlit.app/
 ---
 
 ## ✨ Features
@@ -44,8 +46,6 @@ No Site Business Finder (NSBF) is an open-source tool that helps you discover bu
 
 ## 🌐 Streamlit Web App (Recommended)
 
-### LIVE URL
-https://nositebusinessfinder.streamlit.app/
 
 ### How to Run
 ```bash
